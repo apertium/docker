@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER sushain@skc.name
 
 RUN apt-get --yes update
-RUN apt-get --yes install wget
+RUN apt-get --yes install wget apt-utils
 
 RUN wget https://apertium.projectjj.com/apt/install-nightly.sh -O - | bash
 
