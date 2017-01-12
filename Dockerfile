@@ -1,12 +1,11 @@
 FROM ubuntu:latest
 MAINTAINER sushain@skc.name
 
-RUN apt-get --yes update
-RUN apt-get --yes install wget apt-utils
+RUN apt-get --yes update && apt-get --yes install wget apt-utils
 
 RUN wget https://apertium.projectjj.com/apt/install-nightly.sh -O - | bash
 
-RUN apt-get --yes --fix-broken install \
+RUN apt-get --yes update && apt-get --yes --fix-broken install \
 	locales \
 	build-essential \
 	automake \
