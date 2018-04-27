@@ -1,22 +1,20 @@
-FROM ubuntu:latest
-MAINTAINER sushain@skc.name
+FROM debian:jessie-slim
+LABEL maintainer sushain@skc.name
+ENV LANG C.UTF-8
 
-RUN apt-get --yes update && apt-get --yes install wget apt-utils
+RUN apt-get -qq update && apt-get -qq install apt-utils wget
 
-RUN wget https://apertium.projectjj.com/apt/install-nightly.sh -O - | bash
+ADD https://apertium.projectjj.com/apt/install-nightly.sh .
+RUN bash install-nightly.sh
 
-RUN apt-get --yes update && apt-get --yes --fix-broken install \
-	locales \
+RUN apt-get -qq update && apt-get -qq install \
 	build-essential \
 	automake \
-	subversion \
 	pkg-config \
 	gawk \
 	libtool \
-	apertium-all-dev
+	apertium-all-dev \
+	apertium-en-es
 
-RUN wget https://raw.githubusercontent.com/unhammer/apertium-get/master/apertium-get
-RUN chmod +x apertium-get
-RUN ./apertium-get en-es
-
-CMD cd apertium-en-es && echo 'Hello world!' | apertium -d . en-es
+ENTRYPOINT ["apertium"]
+CMD ["en-es"]
