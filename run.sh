@@ -1,4 +1,4 @@
 #!/bin/sh
 
 docker build -t apertium .
-echo "hello" | docker run -i apertium
+docker run apertium -h
