@@ -1,4 +1,4 @@
-name: Build and Publish
+name: Build Docker image and push to repositories
 
 on:
   # run it on push to the default repository branch
@@ -9,7 +9,6 @@ on:
 
 jobs:
   nightly:
-    name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
 
     steps:
