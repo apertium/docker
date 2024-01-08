@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 LABEL maintainer sushain@skc.name
 ENV LANG C.UTF-8
 
@@ -8,7 +8,7 @@ RUN chmod 644 /etc/apt/trusted.gpg.d/apertium.gpg
 ADD https://apertium.projectjj.com/apt/apertium.pref /etc/apt/preferences.d/apertium.pref
 RUN chmod 644 /etc/apt/preferences.d/apertium.pref
 
-RUN echo "deb http://apertium.projectjj.com/apt/nightly bullseye main" > /etc/apt/sources.list.d/apertium.list
+RUN echo "deb http://apertium.projectjj.com/apt/nightly bookworm main" > /etc/apt/sources.list.d/apertium.list
 
 RUN apt-get -qq update && apt-get -qq install apertium-all-dev
 
