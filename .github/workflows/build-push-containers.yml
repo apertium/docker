@@ -3,7 +3,7 @@ name: Build Docker image and push to repositories
 on:
   # run it on push to the default repository branch
   push:
-    branches: [master]
+    branches: [main]
   # run it during pull request
   pull_request:
   # run it weekly
@@ -46,7 +46,7 @@ jobs:
             ghcr.io/apertium/base:latest
           # apertium/base:latest
           # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v3
@@ -58,7 +58,7 @@ jobs:
             ghcr.io/apertium/base:release
           # apertium/base:release
           # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/master' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
